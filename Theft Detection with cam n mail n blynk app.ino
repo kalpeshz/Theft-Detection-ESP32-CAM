@@ -1,23 +1,4 @@
-/*************************************************************************************************************************************************
- *  TITLE: This sketch add the email functionality to the previous motion detection and image capture sketch.
- *  You need to install the ESP32 Mail Client library for the sketch to work correctly. Watch the video to learn more.
- *
- *  By Frenoy Osburn
- *  YouTube Video: https://youtu.be/ywCL9zDIrT0
- *  BnBe Post: https://www.bitsnblobs.com/motion-triggered-image-capture-with-email---esp32-cam
- *************************************************************************************************************************************************/
 
-  /********************************************************************************************************************
- *  Board Settings:
- *  Board: "ESP32 Wrover Module"
- *  Upload Speed: "921600"
- *  Flash Frequency: "80MHz"
- *  Flash Mode: "QIO"
- *  Partition Scheme: "Hue APP (3MB No OTA/1MB SPIFFS)"
- *  Core Debug Level: "None"
- *  COM Port: Depends *On Your System*
- *********************************************************************************************************************/
- 
 #include "esp_camera.h"
 #include "FS.h"
 #include "SPI.h"
@@ -55,7 +36,7 @@ uint16_t nextImageNumber = 0;
 #define WIFI_PASSWORD         "123456789"
 
 #define emailSenderAccount    "kalpeshzurange@gmail.com"    //To use send Email for Gmail to port 465 (SSL), less secure app option should be enabled. https://myaccount.google.com/lesssecureapps?pli=1
-#define emailSenderPassword   "kalpesh9762388784"
+#define emailSenderPassword   "****************" //ur mail passward
 
 #define emailRecipient        "rohitsomani18@gmail.com"
 #define emailRecipient2       "kalpeshzurange33@gmail.com"
@@ -169,28 +150,6 @@ void setup()
     while(1);   //wait here as something is not right
   }
 
-/*
-  EEPROM.get(COUNT_ADDRESS, nextImageNumber);
-  Serial.println(nextImageNumber);
-  nextImageNumber += 1;
-  EEPROM.put(COUNT_ADDRESS, nextImageNumber);
-  EEPROM.commit();
-  while(1);
-  */
-  
-  /*ERASE EEPROM BYTES START*/
-  /*
-  Serial.println("Erasing EEPROM...");
-  for(int i = 0; i < EEPROM_SIZE; i++)
-  {
-    EEPROM.write(i, 0xFF);
-    EEPROM.commit();
-    delay(20);
-  }
-  Serial.println("Erased");
-  while(1);
-  */
-  /*ERASE EEPROM BYTES END*/  
 
   if(EEPROM.read(ID_ADDRESS) != ID_BYTE)    //there will not be a valid picture number
   {
